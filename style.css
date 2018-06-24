@@ -1,0 +1,39 @@
+#sprite {
+  width: 210px;
+  height: 257px;
+  background-repeat: no-repeat;
+}
+
+.base {
+  background-image: url('img/goku-standing.png');
+}
+
+.powerup.base {
+  background-image: url('img/goku-powerup-sheet-2.png');
+  animation: powerup .3s steps(2) infinite;
+}
+
+#meter-container {
+  position: relative;
+  border: 3px solid black;
+}
+
+#meter-container span {
+  margin-left: 10px;
+  font-size: 24px;
+  font-weight: bold;
+}
+
+#meter {
+  position: absolute;
+  left: 0;
+  top: 0;
+  height: 100%;
+  background-color: #FFFD38;
+  z-index: -1;
+}
+
+@keyframes powerup {
+  from { background-position: 0px; }
+  to { background-position: -513px; }
+}
