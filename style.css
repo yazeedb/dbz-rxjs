@@ -9,7 +9,7 @@
 }
 
 .powerup.base {
-  background-image: url('img/goku-powerup-sheet-2.png');
+  background-image: url('img/goku-powerup-sheet.png');
   animation: powerup .3s steps(2) infinite;
 }
 
