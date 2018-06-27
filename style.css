@@ -10,7 +10,7 @@ body {
   width: 105px;
   height: 215px;
   background-image: url('img/goku-standing-sheet.png');
-  animation: stand 1s steps(2) infinite;
+  animation: stand .8s steps(2) infinite;
 }
 
 .powerup.base {
