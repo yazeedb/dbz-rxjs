@@ -1,14 +1,17 @@
 #sprite {
-  width: 210px;
-  height: 257px;
   background-repeat: no-repeat;
 }
 
 .base {
-  background-image: url('img/goku-standing.png');
+  width: 105px;
+  height: 215px;
+  background-image: url('img/goku-standing-sheet.png');
+  animation: stand 1s steps(2) infinite;
 }
 
 .powerup.base {
+  width: 210px;
+  height: 257px;
   background-image: url('img/goku-powerup-sheet.png');
   animation: powerup .3s steps(2) infinite;
 }
@@ -31,6 +34,11 @@
   height: 100%;
   background-color: #FFFD38;
   z-index: -1;
+}
+
+@keyframes stand {
+  from { background-position: 0px; }
+  to { background-position: -255px; }
 }
 
 @keyframes powerup {
