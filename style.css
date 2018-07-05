@@ -6,17 +6,33 @@ body {
   background-repeat: no-repeat;
 }
 
-.base {
-  width: 105px;
-  height: 215px;
-  background-image: url('img/goku-standing-sheet.png');
+.base, .ssj {
+  width: 120px;
+  height: 250px;
+  /* width: 105px;
+  height: 215px; */
   animation: stand .8s steps(2) infinite;
+}
+
+.base {
+  background-image: url('img/goku-standing-sheet.png');
+}
+
+.ssj {
+  background-image: url('img/goku-ssj-standing-sheet.png');
 }
 
 .powerup.base {
   width: 210px;
   height: 257px;
   background-image: url('img/goku-powerup-sheet.png');
+  animation: powerup .3s steps(2) infinite;
+}
+
+.powerup.ssj {
+  width: 225px;
+  height: 257px;
+  background-image: url('img/goku-ssj-powerup-sheet.png');
   animation: powerup .3s steps(2) infinite;
 }
 

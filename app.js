@@ -7,7 +7,10 @@ const {
   range,
   zip,
   operators: {
-    filter
+    filter,
+    scan,
+    startWith,
+    tap
   }
 } = rxjs;
 
@@ -17,26 +20,45 @@ const meter = $('#meter');
 
 const begin = fromEvent(document, 'keydown');
 const end = fromEvent(document, 'keyup');
-let powerLevel = 0;
+// let powerLevel = 0;
 
-const powerLimits = {
+const powerLevels = {
   base: 100,
   ssj: 5000
 }
 
-begin
-  .subscribe(() => {
+begin.pipe(
+  tap(() => {
     sprite.classList.add('powerup');
+  }),
+  scan(acc => acc + 1, 0),
+  filter(level => level > 100)
+)
+.subscribe(power => {
+  console.log({ power });
 
-    powerLevel += powerLimits.base > powerLevel ? 1 : 0;
+  sprite.classList.remove('base');
+  sprite.classList.add('ssj');
+});
 
-    const containerWidth = meterContainer.offsetWidth;
-    const newWidth = (powerLevel / powerLimits.base) * containerWidth;
+end.subscribe(() => {
+  sprite.classList.remove('powerup');
+})
 
-    meter.style.width = `${newWidth}px`;
-  });
-
-end
-  .subscribe(() => {
-    sprite.classList.remove('powerup');
-  });
+//
+// begin
+//   .subscribe(() => {
+//     sprite.classList.add('powerup');
+//
+//     powerLevel += powerLimits.base > powerLevel ? 1 : 0;
+//
+//     const containerWidth = meterContainer.offsetWidth;
+//     const newWidth = (powerLevel / powerLimits.base) * containerWidth;
+//
+//     meter.style.width = `${newWidth}px`;
+//   });
+//
+// end
+//   .subscribe(() => {
+//     sprite.classList.remove('powerup');
+//   });
