@@ -8,6 +8,7 @@ const {
   zip,
   operators: {
     filter,
+    map,
     scan,
     startWith,
     tap
@@ -22,23 +23,37 @@ const begin = fromEvent(document, 'keydown');
 const end = fromEvent(document, 'keyup');
 // let powerLevel = 0;
 
+// const powerLevels = {
+//   base: 100,
+//   ssj: 5000
+// };
+
 const powerLevels = {
-  base: 100,
-  ssj: 5000
-}
+  100: {
+    current: 'base',
+    previous: null,
+    next: 'ssj'
+  },
+  1000: {
+    current: 'ssj',
+    previous: 'base',
+    next: null
+  }
+};
 
 begin.pipe(
   tap(() => {
     sprite.classList.add('powerup');
   }),
   scan(acc => acc + 1, 0),
-  filter(level => level > 100)
+  map(level => powerLevels[level]),
+  filter(level => level && level.next)
 )
-.subscribe(power => {
-  console.log({ power });
+.subscribe(({ next, previous }) => {
+  console.log({ next, previous });
 
-  sprite.classList.remove('base');
-  sprite.classList.add('ssj');
+  sprite.classList.remove(previous);
+  sprite.classList.add(next);
 });
 
 end.subscribe(() => {
