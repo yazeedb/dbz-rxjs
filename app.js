@@ -18,8 +18,8 @@ const powerLevels = {
 
 const fillMeter = (level) => {
   const containerWidth = meterContainer.offsetWidth;
-  const divisor = level >= 100 ? level : 100;
-  const newWidth = (level / divisor) * containerWidth;
+  const divideBy = level >= 100 ? level : 100;
+  const newWidth = (level / divideBy) * containerWidth;
 
   meter.style.width = `${newWidth}px`;
 };
