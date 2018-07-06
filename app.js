@@ -40,10 +40,10 @@ const main = () => {
     map(level => powerLevels[level]),
     filter(level => level && level.next)
   )
-  .subscribe(({ next, previous }) => {
-    console.log({ next, previous });
+  .subscribe(({ current, next }) => {
+    console.log({ current, next });
 
-    sprite.classList.remove(previous);
+    sprite.classList.remove(current);
     sprite.classList.add(next);
   });
 
