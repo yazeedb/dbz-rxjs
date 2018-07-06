@@ -54,6 +54,12 @@ body {
   z-index: -1;
 }
 
+#reset {
+  font-size: 25px;
+  color: white;
+  background: #FA7D24;
+}
+
 @keyframes stand {
   from { background-position: 0px; }
   to { background-position: -255px; }
