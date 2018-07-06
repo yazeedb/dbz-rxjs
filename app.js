@@ -16,6 +16,14 @@ const powerLevels = {
   }
 };
 
+const fillMeter = (level) => {
+  const containerWidth = meterContainer.offsetWidth;
+  const divisor = level >= 100 ? level : 100;
+  const newWidth = (level / divisor) * containerWidth;
+
+  meter.style.width = `${newWidth}px`;
+};
+
 const main = () => {
   const { fromEvent } = rxjs;
   const { filter, map, scan, tap } = rxjs.operators;
@@ -24,10 +32,11 @@ const main = () => {
   const end = fromEvent(document, 'keyup');
 
   begin.pipe(
-    tap(() => {
-      sprite.classList.add('powerup');
-    }),
     scan(acc => acc + 1, 0),
+    tap((level) => {
+      sprite.classList.add('powerup');
+      fillMeter(level);
+    }),
     map(level => powerLevels[level]),
     filter(level => level && level.next)
   )
